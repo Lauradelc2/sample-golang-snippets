@@ -22,7 +22,10 @@ jobs:
         go-version: '1.20'
 
     - name: Build
-      run: go build -v ./hello_world/
+      run: cd hello_world
+
+    - name: Build
+      run: go build -v 
 
     - name: Test
-      run: go test -v ./hello_world/
+      run: go test -v 
