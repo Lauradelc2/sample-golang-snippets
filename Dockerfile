@@ -4,8 +4,8 @@ WORKDIR /src
 
 COPY . .
 
-RUN go get 
+RUN go get -d ./...
 
-RUN go build -v 
+RUN go build -v ./...
 
-RUN go test -v
+RUN go test -v ./...
