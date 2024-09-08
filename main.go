@@ -1,33 +1,61 @@
+// Adaptado de https://github.com/go-micro/examples/blob/main/http/srv/main.go
+
 package main
 
 import (
-        "fmt"
-        "log"
-        "net/http"
+	"log"
 
-        "go-micro.dev/v5"
+	httpServer "github.com/go-micro/plugins/v4/server/http"
+	"go-micro.dev/v4"
+
+	"github.com/gin-gonic/gin"
+	"go-micro.dev/v4/registry"
+	"go-micro.dev/v4/server"
+)
+
+const (
+	SERVER_NAME = "demo-http" // server name
 )
 
 func main() {
-        // Create a new web service
-        service := micro.NewService(
-                web.Name("helloworld"),
-                web.Address(":8080"),
-        )
 
-        // Initialize the service
-        service.Init()
+	srv := httpServer.NewServer(
+		server.Name(SERVER_NAME),
+		server.Address(":8080"),
+	)
 
-        // Set up a route and handler
-        http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-                fmt.Fprintln(w, "Hello, World!")
-        })
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
+	router.Use(gin.Recovery())
 
-        // Assign the handler to the service
-        service.Handle("/", http.DefaultServeMux)
+	// register router
+	demo := newDemo()
+	demo.InitRouter(router)
 
-        // Start the service
-        if err := service.Run(); err != nil {
-                log.Fatal(err)
-        }
+	hd := srv.NewHandler(router)
+	if err := srv.Handle(hd); err != nil {
+		log.Fatalln(err)
+	}
+
+	service := micro.NewService(
+		micro.Server(srv),
+		micro.Registry(registry.NewRegistry()),
+	)
+	service.Init()
+	service.Run()
+}
+
+//demo
+type demo struct{}
+
+func newDemo() *demo {
+	return &demo{}
+}
+
+func (a *demo) InitRouter(router *gin.Engine) {
+	router.POST("/demo", a.demo)
+}
+
+func (a *demo) demo(c *gin.Context) {
+	c.JSON(200, gin.H{"msg": "call go-micro v3 http server success"})
 }
