@@ -1,4 +1,4 @@
-package main
+package go_routines
 
 import (
 	"fmt"
@@ -20,7 +20,7 @@ func say2(s string) {
 	}
 }
 
-func main() {
+func run_goroutine() {
 	go say2("world")
 	say2("hello")
 }

@@ -1,9 +1,11 @@
+package example_if
+
 import (
   "fmt"
   "strconv"
 )
 
-func main() {
+func sample_loop() {
   var sum int
   for i := 0; i < 5; i++ {
 	  if i%2 == 0 {
