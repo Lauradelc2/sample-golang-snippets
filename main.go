@@ -5,12 +5,12 @@ import (
         "log"
         "net/http"
 
-        "go-micro.dev/v4/web"
+        "go-micro.dev/v5"
 )
 
 func main() {
         // Create a new web service
-        service := web.NewService(
+        service := micro.NewService(
                 web.Name("helloworld"),
                 web.Address(":8080"),
         )
