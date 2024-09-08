@@ -2,7 +2,7 @@ from golang
 
 COPY . .
 
-RUN go get -d ./...
+RUN go get 
 
 RUN go build -v 
 
