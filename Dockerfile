@@ -1,5 +1,7 @@
 from golang
 
+WORKDIR /src
+
 COPY . .
 
 RUN go get 
