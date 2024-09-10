@@ -2,9 +2,9 @@ from golang
 
 WORKDIR /src
 
-COPY . .
+COPY greet/ greet
 
-RUN go get -d ./...
+RUN go get .
 
 RUN go build -v ./...
 
