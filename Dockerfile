@@ -2,7 +2,7 @@ from golang
 
 WORKDIR /src
 
-COPY greet/ greet
+COPY greet/ .
 
 RUN go get .
 
