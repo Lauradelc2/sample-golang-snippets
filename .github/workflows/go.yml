@@ -16,3 +16,22 @@ jobs:
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag laura:$(date +%s)
+
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Log in to Azure
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Build and deploy Container App
+        uses: azure/container-apps-deploy-action@v1
+        with:
+          appSourcePath: ${{ github.workspace }}
+          acrName: cafae30ff742acr
+          containerAppName: exemplo-api
+          resourceGroup: castanhell_rg_1841
