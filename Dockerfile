@@ -1,3 +1,6 @@
+# Este comentario será inserido apenas como marcador
+# para um novo pull-request, solicitado pelo exercicio.
+
 from golang as build
 
 WORKDIR /src
