@@ -4,9 +4,18 @@
 package types
 
 type Request struct {
-	Name string `path:"name,options=[you,me]"` // parameters are auto validated
+	Name string `path:"name"` // parameters are auto validated
 }
 
 type Response struct {
 	Message string `json:"message"`
+}
+
+type ArithmeticReq struct {
+	O1 float32 `form:"o1"`
+	O2 float32 `form:"o2"`
+}
+
+type Result struct {
+	Val float32 `json:"val"`
 }

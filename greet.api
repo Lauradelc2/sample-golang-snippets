@@ -1,14 +1,36 @@
 type (
 	Request {
-		Name string `path:"name,options=[you,me]"` // parameters are auto validated
+		Name string `path:"name"` // parameters are auto validated
 	}
 	Response {
 		Message string `json:"message"`
 	}
 )
 
+type (
+	arithmeticReq {
+		o1 float32 `form:"o1"`
+		o2 float32 `form:"o2"`
+	}
+	result {
+		val float32 `json:"val"`
+	}
+)
+
 service greet-api {
 	@handler GreetHandler
 	get /greet/from/:name (Request) returns (Response)
+
+	@handler SumHandler
+	get /sum (arithmeticReq) returns (result)
+
+	@handler SubHandler
+	get /sub (arithmeticReq) returns (result)
+
+	@handler MulHandler
+	get /mul (arithmeticReq) returns (result)
+
+	@handler DivHandler
+	get /div (arithmeticReq) returns (result)
 }
 

@@ -16,8 +16,28 @@ func RegisterHandlers(server *rest.Server, serverCtx *svc.ServiceContext) {
 		[]rest.Route{
 			{
 				Method:  http.MethodGet,
+				Path:    "/div",
+				Handler: DivHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
 				Path:    "/greet/from/:name",
 				Handler: GreetHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/mul",
+				Handler: MulHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/sub",
+				Handler: SubHandler(serverCtx),
+			},
+			{
+				Method:  http.MethodGet,
+				Path:    "/sum",
+				Handler: SumHandler(serverCtx),
 			},
 		},
 	)
