@@ -17,5 +17,5 @@ func TestDiv(t *testing.T) {
 	ml := NewDivLogic(context.Background(), nil)
 	res, _ := ml.Div(val)
 
-	assert.Equal(t, res.Val, 2)
+	assert.Equal(t, res.Val, float32(2))
 }

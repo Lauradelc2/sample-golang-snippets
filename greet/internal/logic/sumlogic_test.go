@@ -17,5 +17,5 @@ func TestSum(t *testing.T) {
 	sl := NewSumLogic(context.Background(), nil)
 	res, _ := sl.Sum(val)
 
-	assert.Equal(t, res.Val, 3)
+	assert.Equal(t, res.Val, float32(3))
 }

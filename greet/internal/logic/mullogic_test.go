@@ -17,5 +17,5 @@ func TestMul(t *testing.T) {
 	ml := NewMulLogic(context.Background(), nil)
 	res, _ := ml.Mul(val)
 
-	assert.Equal(t, res.Val, 2)
+	assert.Equal(t, res.Val, float32(2))
 }

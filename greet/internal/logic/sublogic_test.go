@@ -17,5 +17,5 @@ func TestSub(t *testing.T) {
 	sl := NewSubLogic(context.Background(), nil)
 	res, _ := sl.Sub(val)
 
-	assert.Equal(t, res.Val, 1)
+	assert.Equal(t, res.Val, float32(1))
 }
