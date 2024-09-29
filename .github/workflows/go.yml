@@ -18,7 +18,7 @@ jobs:
       run: docker build . --file Dockerfile --tag laura:$(date +%s)
 
   test:
-  runs-on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v4
