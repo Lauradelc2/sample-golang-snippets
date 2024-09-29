@@ -27,13 +27,14 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: '1.21.x'
-      - name: cd into greet folder
-        run: cd greet
       - name: Install dependencies
+        working-directory: greet
         run: go get .
       - name: Build
+        working-directory: greet
         run: go build -v ./...
       - name: Test with the Go CLI
+        working-directory: greet
         run: go test
 
   deploy:
